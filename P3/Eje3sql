@@ -1,0 +1,5 @@
+select pa.siglas
+from partidos pa, eventos_resultados ev
+where pa.idpartido  = ev.partido
+group by pa.siglas
+having count(ev.evento) >= all(select count(evento) from eventos_resultados group by partido);
